@@ -3,276 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HireFlow</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login | HireFlow</title>
+    <link rel="stylesheet" href="styles/loginStyles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-left">
-            <a href="index.html" class="logo"><img src="images/logo.png"></a>
-            <div class="search-box">
-                <img src="images/search.png">
-                <input type="text" placeholder="Search">
-            </div>
-        </div>
-        <div class="navbar-center">
-            <ul>
-                <li><a href="#" class="active-link"><img src="images/home.png"> <span>Home</span></a></li>
-                <li><a href="#"><img src="images/network.png"> <span>My Network</span></a></li>
-                <li><a href="#"><img src="images/jobs.png"> <span>Jobs</span></a></li>
-                <li><a href="#"><img src="images/message.png"> <span>Messanging</span></a></li>
-                <li><a href="#"><img src="images/notification.png"> <span>Notifications</span></a></li>
-            </ul>
-        </div>
-        <div class="navbar-right">
-            <div class="online">
-                <img src="images/user-1.png" class="nav-profile-img" onclick="toggleMenu()">
-            </div>
-        </div>
-        <!-- Profile drop down menu -->
-        <div class="profile-menu-wrap" id="profileMenu">
-            <div class="profile-menu">
-                <div class="user-info">
-                    <img src="images/user-1.png">
-                    <div>
-                        <h3>Ryan Walton</h3>
-                        <a href="profile.html">View My Profile</a>
-                    </div>
-                </div>
-                <hr>
-                <a href="#" class="profile-menu-link">
-                    <img src="images/feedback.png">
-                    <p>Grive Feedback</p>
-                    <span>></span>
-                </a>
-                <a href="#" class="profile-menu-link">
-                    <img src="images/setting.png">
-                    <p>Settings & Privacy</p>
-                    <span>></span>
-                </a>
-                <a href="#" class="profile-menu-link">
-                    <img src="images/help.png">
-                    <p>Help & Support</p>
-                    <span>></span>
-                </a>
-                <a href="#" class="profile-menu-link">
-                    <img src="images/display.png">
-                    <p>Dysplay & Accesibility</p>
-                    <span>></span>
-                </a>
-                <a href="#" class="profile-menu-link">
-                    <img src="images/logout.png">
-                    <p>Logout</p>
-                    <span>></span>
-                </a>
-            </div>
-        </div>
-    </nav>
-    <!-------------------- navbar close -------------------->
-
-    <div class="container">
-        <!-- Left sidebar -->
-        <div class="left-sidebar">
-            <div class="sidebar-profile-box">
-                <img src="images/cover-pic.png" width="100%">
-                <div class="sidebar-profile-info">
-                    <img src="images/user-1.png">
-                    <h1>Ryan Walton</h1>
-                    <h3>Web Developer at Microsoft</h3>
-                    <ul>
-                        <li>Your profile views<span>52</span></li>
-                        <li>Your post views<span>810</span></li>
-                        <li>Your connections<span>205</span></li>
-                    </ul>
-                </div>
-                <div class="sidebar-profile-link">
-                    <a href="#"><img src="images/items.png"> My items</a>
-                    <a href="#"><img src="images/premium.png"> Try Premium</a>
-                </div>
-            </div>
-            <div class="sidebar-activity" id="sidebarActivity">
-                <h3>Recent</h3>
-                <a href="#"><img src="images/recent.png"> Web Development</a>
-                <a href="#"><img src="images/recent.png"> User Interface</a>
-                <a href="#"><img src="images/recent.png"> Online Learning</a>
-                <a href="#"><img src="images/recent.png"> Learn Online</a>
-                <a href="#"><img src="images/recent.png"> Group Learning</a>
-                <h3>Groups</h3>
-                <a href="#"><img src="images/group.png"> Web Desing Group</a>
-                <a href="#"><img src="images/group.png"> HTML & CSS Learners</a>
-                <a href="#"><img src="images/group.png"> Python & JavaScript Group</a>
-                <a href="#"><img src="images/group.png"> Learn Coding Online</a>
-                <h3>Hastag</h3>
-                <a href="#"><img src="images/hashtag.png"> webdevelopment</a>
-                <a href="#"><img src="images/hashtag.png"> userinterface</a>
-                <a href="#"><img src="images/hashtag.png"> onlinelearning</a>
-                <div class="discover-more-link">
-                    <a href="#">Discover more</a>
-                </div>
-            </div>
-            <p id="showMoreLink" onclick="toggleActivity()">Show More <b>+</b></p>
-        </div>
-
-        <!-- Main content -->
-        <div class="main-content">
-            <div class="create-post">
-                <div class="create-post-input">
-                    <img src="images/user-1.png">
-                    <textarea rows="2" placeholder="Write a post"></textarea>
-                </div>
-                <div class="create-post-links">
-                    <li><img src="images/photo.png">Photo</li>
-                    <li><img src="images/video.png">Video</li>
-                    <li><img src="images/event.png">Event</li>
-                    <li>Post</li>
-                </div>
-            </div>
-
-            <div class="sort-by">
-                <hr>
-                <p>Sort by: <span>top <img src="images/down-arrow.png"></span></p>
-            </div>
-
-            <div class="post">
-                <div class="post-author">
-                    <img src="images/user-3.png">
-                    <div>
-                        <h1>Nicole Senicourt</h1>
-                        <small>Founder and CEO at Gellelio Group | Angel Investor</small>
-                        <small>2 hours ago</small>
-                    </div>
-                </div>
-                <p>The success of every websites depends on search engine optimization and digital marketign strategy. If you are on first page of all major search engines then you are ahead among your competitors</p>
-                <img src="images/post-image-1.png" width="100%">
-                <div class="post-stats">
-                    <div>
-                        <img src="images/thumbsup.png">
-                        <img src="images/love.png">
-                        <img src="images/clap.png">
-                        <span class="liked-users">Elena Delgado and 75 others</span>
-                    </div>
-                    <div>
-                        <span class="">22 comments &middot; 44 shared</span>
-                    </div>
-                </div>
-                <div class="post-activity">
-                    <div>
-                        <img src="images/user-1.png" class="post-activity-user-icon">
-                        <img src="images/down-arrow.png" class="post-activity-arrow-icon">
-                    </div>
-                    <div class="post-activity-link">
-                        <img src="images/like.png">
-                        <span>Like</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <img src="images/comment.png">
-                        <span>Comment</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <img src="images/share.png">
-                        <span>Share</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <img src="images/send.png">
-                        <span>Send</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="post">
-                <div class="post-author">
-                    <img src="images/user-3.png">
-                    <div>
-                        <h1>Nicole Senicourt</h1>
-                        <small>Founder and CEO at Gellelio Group | Angel Investor</small>
-                        <small>2 hours ago</small>
-                    </div>
-                </div>
-                <p>The success of every websites depends on search engine optimization and digital marketign strategy. If you are on first page of all major search engines then you are ahead among your competitors</p>
-                <img src="images/post-image-1.png" width="100%">
-                <div class="post-stats">
-                    <div>
-                        <img src="images/thumbsup.png">
-                        <img src="images/love.png">
-                        <img src="images/clap.png">
-                        <span class="liked-users">Elena Delgado and 75 others</span>
-                    </div>
-                    <div>
-                        <span class="">22 comments &middot; 44 shared</span>
-                    </div>
-                </div>
-                <div class="post-activity">
-                    <div>
-                        <img src="images/user-1.png" class="post-activity-user-icon">
-                        <img src="images/down-arrow.png" class="post-activity-arrow-icon">
-                    </div>
-                    <div class="post-activity-link">
-                        <img src="images/like.png">
-                        <span>Like</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <img src="images/comment.png">
-                        <span>Comment</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <img src="images/share.png">
-                        <span>Share</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <img src="images/send.png">
-                        <span>Send</span>
-                    </div>
-                </div>
+    <header class="header">
+        <div class="logo"><img src="images/logo_name_h.png"></div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h1>Iniciar sesión</h1>
+            
+            <button class="btn btn-google">
+                <span class="btn-icon"><ion-icon name="logo-google"></ion-icon></span> Continuar con Google
+            </button>
+            
+            <button class="btn btn-microsoft">
+                <span class="btn-icon"><ion-icon name="logo-microsoft"></ion-icon></span> Iniciar sesión con Microsoft
+            </button>
+            
+            <button class="btn btn-apple">
+                <span class="btn-icon"><ion-icon name="logo-apple"></ion-icon></span> Iniciar sesión con Apple
+            </button>
+            
+            <div class="separator">
+                <span>o</span>
             </div>
             
-        </div>
-
-        <!-- Right sidebar -->
-        <div class="right-sidebar">
-            <div class="sidebar-news">
-                <img src="images/more.png" class="info-icon">
-                <h3>Trending News</h3>
-                <a href="#">High demand for skilled manpower</a>
-                <span>1d ago &middot; 10,934 readers</span>
-                <a href="#">Carrers growing horizontally too</a>
-                <span>1d ago &middot; 1,552 readers</span>
-                <a href="#">Less work visa for US, more for UK</a>
-                <span>1d ago &middot; 27,290 readers</span>
-                <a href="#">More hiring = higher confidence?</a>
-                <span>1d ago &middot; 8,208 readers</span>
-                <a href="#">Gautam Adani is the world's third richest</a>
-                <span>1d ago &middot; 4,205 readers</span>
-
-                <a href="#" class="read-more-link">Read More</a>
-            </div>
-
-            <div class="sidebar-ad">
-                <small>Ad &middot; &middot; &middot;</small>
-                <p>Master the 5 principles of web desing</p>
-                <div>
-                    <img src="images/user-1.png">
-                    <img src="images/mi-logo.png">
+            <form>
+                <div class="form-group">
+                    <label for="email">Email o teléfono</label>
+                    <input type="text" id="email" name="email">
                 </div>
-                <b>Brand and Demand in Xiaomi</b>
-                <a href="#" class="ad-link">Learn More</a>
-            </div>
-
-            <div class="sidebar-useful-links">
-                <a href="#">About</a>
-                <a href="#">Accesibility</a>
-                <a href="#">Help Center</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Advertising</a>
-                <a href="#">Get the App</a>
-                <a href="#">More</a>
-
-                <div class="copyright-msg">
-                    <img src="images/logo.png">
-                    <p>HireFlow &#169; 2025. All rights reserved</p>
+                
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password">
                 </div>
+                
+                <a href="#" class="forgot-password">¿Has olvidado tu contraseña?</a>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Mantener la sesión iniciada</label>
+                </div>
+                
+                <button type="submit" class="btn-login">Iniciar sesión</button>
+            </form>
+            
+            <div class="join-now">
+                ¿Estás empezando a usar HireFlow? <a href="public/signup.html">Unirse ahora</a>
             </div>
         </div>
-    </div>
-    <script src="script.js"></script>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Condiciones de uso</a>
+            <a href="#">Política de privacidad</a>
+            <a href="#">Puedes comunicarnos</a>
+            <a href="#">Política de cookies</a>
+            <a href="#">Política de copyright</a>
+            <a href="#">Enviar comentarios</a>
+            <a href="#">Idioma</a>
+        </div>
+        <div><img src="images/logo.png">HireFlow &#169; 2025. Todos los derechos reservados</div>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- En index.html y signup.html, añade antes del cierre del body -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/company-manager.js"></script>
+    <script>
+        // En index.html, reemplaza el script existente
+        document.addEventListener('DOMContentLoaded', function() {
+        const authManager = new AuthManager();
+
+        // Manejar inicio de sesión con email
+        const loginForm = document.querySelector('form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+
+            // Configurar persistencia de sesión
+            if (remember) {
+                await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+            } else {
+                await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+            }
+
+            const result = await authManager.signInWithEmail(email, password);
+            
+            if (result.success) {
+                window.location.href = 'public/main.html';
+            } else {
+                alert('Error: ' + result.error);
+            }
+            });
+        }
+
+        // Manejar botones de autenticación social
+        document.querySelector('.btn-google').addEventListener('click', async function() {
+            const result = await authManager.signInWithGoogle();
+            if (result.success) {
+            window.location.href = 'public/main.html';
+            } else {
+            alert('Error: ' + result.error);
+            }
+        });
+
+        document.querySelector('.btn-microsoft').addEventListener('click', async function() {
+            const result = await authManager.signInWithMicrosoft();
+            if (result.success) {
+            window.location.href = 'public/main.html';
+            } else {
+            alert('Error: ' + result.error);
+            }
+        });
+
+        document.querySelector('.btn-apple').addEventListener('click', async function() {
+            const result = await authManager.signInWithApple();
+            if (result.success) {
+            window.location.href = 'public/main.html';
+            } else {
+            alert('Error: ' + result.error);
+            }
+        });
+
+        // Manejar "olvidé contraseña"
+        document.querySelector('.forgot-password').addEventListener('click', async function(e) {
+            e.preventDefault();
+            const email = prompt('Ingresa tu correo electrónico para restablecer la contraseña:');
+            if (email) {
+            const result = await authManager.resetPassword(email);
+            if (result.success) {
+                alert('Se ha enviado un correo para restablecer tu contraseña.');
+            } else {
+                alert('Error: ' + result.error);
+            }
+            }
+        });
+        });
+    </script>
 </body>
 </html>

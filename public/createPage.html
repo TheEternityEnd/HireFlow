@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Page | HireFlow</title>
+  <link rel="stylesheet" href="../styles/createPageStyles.css">
+  <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="main.html" class="logo"><img src="../images/logo.png"></a>
+        </div>
+        <div class="navbar-center">
+            <ul>
+                <li><a href="main.html" class="active-link"><img src="../images/home.png"> <span>Home</span></a></li>
+                <li><a href="#"><img src="../images/network.png"> <span>My Network</span></a></li>
+                <li><a href="#"><img src="../images/jobs.png"> <span>Jobs</span></a></li>
+                <li><a href="#"><img src="../images/message.png"> <span>Messanging</span></a></li>
+                <li><a href="#"><img src="../images/notification.png"> <span>Notifications</span></a></li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            <div class="online">
+                <img src="../images/user-1.png" class="nav-profile-img" onclick="toggleMenu()">
+            </div>
+        </div>
+        <!-- Profile drop down menu -->
+        <div class="profile-menu-wrap" id="profileMenu">
+            <div class="profile-menu">
+                <div class="user-info">
+                    <img src="../images/user-1.png">
+                    <div>
+                        <h3>Ryan Walton</h3>
+                        <a href="profile.html">View My Profile</a>
+                    </div>
+                </div>
+                <hr>
+                <a href="#" class="profile-menu-link">
+                    <img src="../images/feedback.png">
+                    <p>Grive Feedback</p>
+                    <span>></span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src="../images/setting.png">
+                    <p>Settings & Privacy</p>
+                    <span>></span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src="../images/help.png">
+                    <p>Help & Support</p>
+                    <span>></span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src="../images/display.png">
+                    <p>Dysplay & Accesibility</p>
+                    <span>></span>
+                </a>
+                <a href="createPage.html" class="profile-menu-link">
+                    <img src="../images/page.png">
+                    <p>Create Business Page</p>
+                    <span>></span>
+                </a>
+                <a href="../index.html" class="profile-menu-link">
+                    <img src="../images/logout.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Crear página de empresa</h2>
+            </div>
+            <div class="card-body">
+                <form id="company-form">
+                    <!-- Sección 1: Identidad de la empresa -->
+                    <div class="form-group">
+                        <label for="company-name" class="required">Nombre de la empresa</label>
+                        <input type="text" id="company-name" name="company-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-logo">Logo de la empresa</label>
+                        <div class="file-upload">
+                            <input type="file" id="company-logo" name="company-logo" accept="image/*" class="file-input">
+                            <label for="company-logo" class="file-label">Haz clic para subir un logo (recomendado)</label>
+                        </div>
+                        <div class="help-text">Formatos aceptados: JPG, PNG, GIF. Tamaño máximo: 5MB</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tagline">Eslogan o tagline</label>
+                        <input type="text" id="tagline" name="tagline" placeholder="Breve frase que identifique a tu empresa">
+                        <div class="help-text">Máximo 60 caracteres</div>
+                    </div>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <!-- Sección 2: Información general -->
+                    <div class="form-group">
+                        <label for="location" class="required">Ubicación principal</label>
+                        <input type="text" id="location" name="location" placeholder="Ciudad, País" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="industry" class="required">Industria o sector</label>
+                        <select id="industry" name="industry" required>
+                            <option value="">Selecciona una industria</option>
+                            <option value="tecnologia">Tecnología</option>
+                            <option value="salud">Salud</option>
+                            <option value="educacion">Educación</option>
+                            <option value="finanzas">Finanzas</option>
+                            <option value="manufactura">Manufactura</option>
+                            <option value="retail">Retail</option>
+                            <option value="consultoria">Consultoría</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-size" class="required">Tamaño de la empresa</label>
+                        <select id="company-size" name="company-size" required>
+                            <option value="">Selecciona un rango</option>
+                            <option value="1-10">1-10 empleados</option>
+                            <option value="11-50">11-50 empleados</option>
+                            <option value="51-200">51-200 empleados</option>
+                            <option value="201-500">201-500 empleados</option>
+                            <option value="501-1000">501-1000 empleados</option>
+                            <option value="1001-5000">1001-5000 empleados</option>
+                            <option value="5001-10000">5001-10000 empleados</option>
+                            <option value="10000+">Más de 10000 empleados</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-type" class="required">Tipo de empresa</label>
+                        <select id="company-type" name="company-type" required>
+                            <option value="">Selecciona un tipo</option>
+                            <option value="publica">Pública</option>
+                            <option value="privada">Privada</option>
+                            <option value="ong">ONG</option>
+                            <option value="startup">Startup</option>
+                            <option value="gobierno">Gobierno</option>
+                            <option value="educativa">Institución educativa</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="founded-year">Año de fundación</label>
+                        <input type="number" id="founded-year" name="founded-year" min="1800" max="2023">
+                    </div>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <!-- Sección 3: Presentación -->
+                    <div class="form-group">
+                        <label for="brief-description">Descripción breve</label>
+                        <textarea id="brief-description" name="brief-description" maxlength="250" placeholder="Resumen de tu empresa (máximo 250 caracteres)"></textarea>
+                        <div class="char-counter"><span id="brief-counter">0</span>/250 caracteres</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="full-description">Descripción completa</label>
+                        <textarea id="full-description" name="full-description" placeholder="Misión, visión, valores y más detalles sobre tu empresa"></textarea>
+                    </div>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <!-- Sección 4: Contacto y redes -->
+                    <div class="form-group">
+                        <label for="website">Página web oficial</label>
+                        <input type="url" id="website" name="website" placeholder="https://www.tuempresa.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="required">Correo de contacto</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Redes sociales</label>
+                        <div class="social-inputs">
+                            <div class="social-input">
+                                <div class="social-icon">in</div>
+                                <input type="url" placeholder="LinkedIn">
+                            </div>
+                            <div class="social-input">
+                                <div class="social-icon">f</div>
+                                <input type="url" placeholder="Facebook">
+                            </div>
+                            <div class="social-input">
+                                <div class="social-icon">X</div>
+                                <input type="url" placeholder="Twitter/X">
+                            </div>
+                            <div class="social-input">
+                                <div class="social-icon">ig</div>
+                                <input type="url" placeholder="Instagram">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <!-- Sección 5: Empleados y cultura -->
+                    <div class="form-group">
+                        <label for="hiring-policy">Política de contratación actual</label>
+                        <select id="hiring-policy" name="hiring-policy">
+                            <option value="">Selecciona una opción</option>
+                            <option value="hiring">Estamos contratando</option>
+                            <option value="not-hiring">No contratamos por ahora</option>
+                            <option value="selective">Contratación selectiva</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Beneficios destacados</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="benefit-remote" name="benefits" value="remote">
+                                <label for="benefit-remote">Home office</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="benefit-flex" name="benefits" value="flex">
+                                <label for="benefit-flex">Horarios flexibles</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="benefit-health" name="benefits" value="health">
+                                <label for="benefit-health">Seguro médico</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="benefit-bonus" name="benefits" value="bonus">
+                                <label for="benefit-bonus">Bonos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="benefit-training" name="benefits" value="training">
+                                <label for="benefit-training">Capacitación</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="benefit-vacations" name="benefits" value="vacations">
+                                <label for="benefit-vacations">Vacaciones extra</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-photos">Fotos o portada de la empresa</label>
+                        <div class="file-upload">
+                            <input type="file" id="company-photos" name="company-photos" accept="image/*" multiple class="file-input">
+                            <label for="company-photos" class="file-label">Haz clic para subir fotos (máximo 5 imágenes)</label>
+                        </div>
+                        <div class="help-text">Muestra la cultura de tu empresa visualmente</div>
+                    </div>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <!-- Sección 6: Opcionales -->
+                    <div class="form-group">
+                        <label>Valores o cultura corporativa</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="value-innovation" name="values" value="innovation">
+                                <label for="value-innovation">Innovación</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="value-inclusion" name="values" value="inclusion">
+                                <label for="value-inclusion">Inclusión</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="value-sustainability" name="values" value="sustainability">
+                                <label for="value-sustainability">Sostenibilidad</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="value-collaboration" name="values" value="collaboration">
+                                <label for="value-collaboration">Colaboración</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="value-transparency" name="values" value="transparency">
+                                <label for="value-transparency">Transparencia</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="value-quality" name="values" value="quality">
+                                <label for="value-quality">Calidad</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Crear página</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Condiciones de uso</a>
+            <a href="#">Política de privacidad</a>
+            <a href="#">Puedes comunicarnos</a>
+            <a href="#">Política de cookies</a>
+            <a href="#">Política de copyright</a>
+            <a href="#">Enviar comentarios</a>
+            <a href="#">Idioma</a>
+        </div>
+        <div><img src="../images/logo.png">HireFlow &#169; 2025. Todos los derechos reservados</div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+      // En createPage.html, reemplaza el script existente
+      document.addEventListener('DOMContentLoaded', function() {
+        const authManager = new AuthManager();
+        const companyManager = new CompanyManager();
+
+        // Verificar autenticación
+        firebase.auth().onAuthStateChanged((user) => {
+          if (!user) {
+            window.location.href = '../index.html';
+          }
+        });
+
+        // Contador de caracteres para la descripción breve
+        document.getElementById('brief-description').addEventListener('input', function() {
+          const counter = document.getElementById('brief-counter');
+          counter.textContent = this.value.length;
+        });
+
+        // Manejar el envío del formulario
+        document.getElementById('company-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const user = firebase.auth().currentUser;
+          if (!user) {
+            alert('Debes iniciar sesión para crear una empresa.');
+            return;
+          }
+
+          // Recopilar datos del formulario
+          const formData = {
+            name: document.getElementById('company-name').value.trim(),
+            tagline: document.getElementById('tagline').value.trim(),
+            location: document.getElementById('location').value.trim(),
+            industry: document.getElementById('industry').value,
+            size: document.getElementById('company-size').value,
+            type: document.getElementById('company-type').value,
+            foundedYear: document.getElementById('founded-year').value ? 
+                        parseInt(document.getElementById('founded-year').value) : null,
+            briefDescription: document.getElementById('brief-description').value.trim(),
+            fullDescription: document.getElementById('full-description').value.trim(),
+            website: document.getElementById('website').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            hiringPolicy: document.getElementById('hiring-policy').value,
+          };
+
+          // Obtener beneficios seleccionados
+          const benefits = [];
+          document.querySelectorAll('input[name="benefits"]:checked').forEach(checkbox => {
+            benefits.push(checkbox.value);
+          });
+          formData.benefits = benefits;
+
+          // Obtener valores seleccionados
+          const values = [];
+          document.querySelectorAll('input[name="values"]:checked').forEach(checkbox => {
+            values.push(checkbox.value);
+          });
+          formData.values = values;
+
+          // Obtener redes sociales
+          const socialMedia = {};
+          document.querySelectorAll('.social-input input').forEach(input => {
+            if (input.value.trim()) {
+              const platform = input.placeholder.toLowerCase();
+              socialMedia[platform] = input.value.trim();
+            }
+          });
+          formData.socialMedia = socialMedia;
+
+          // Archivos
+          const logoFile = document.getElementById('company-logo').files[0];
+          const photoFiles = Array.from(document.getElementById('company-photos').files);
+
+          // Validaciones
+          const errors = validateForm(formData);
+          if (errors.length > 0) {
+            alert('Por favor, corrige los siguientes errores:\n\n' + errors.join('\n• '));
+            return;
+          }
+
+          // Confirmación
+          const confirmar = confirm(`¿Estás seguro de que quieres crear la página para "${formData.name}"?`);
+          if (!confirmar) return;
+
+          try {
+            showLoading(true);
+
+            // Agregar archivos al formData
+            const companyData = {
+              ...formData,
+              logoFile: logoFile,
+              photoFiles: photoFiles.slice(0, 5) // Máximo 5 fotos
+            };
+
+            const result = await companyManager.createCompany(companyData, user.uid);
+            
+            if (result.success) {
+              showSuccessMessage(result.companyId);
+              this.reset();
+              document.getElementById('brief-counter').textContent = '0';
+            } else {
+              throw new Error(result.error);
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Error al crear la empresa: ' + error.message);
+          } finally {
+            showLoading(false);
+          }
+        });
+
+        function validateForm(data) {
+          const errors = [];
+          
+          if (!data.name || data.name.trim().length < 2) {
+            errors.push('El nombre de la empresa es obligatorio (mínimo 2 caracteres)');
+          }
+          
+          if (!data.email || !isValidEmail(data.email)) {
+            errors.push('El email de contacto debe ser válido');
+          }
+          
+          if (!data.location || data.location.trim().length < 3) {
+            errors.push('La ubicación es obligatoria');
+          }
+          
+          if (!data.industry) {
+            errors.push('La industria/sector es obligatorio');
+          }
+          
+          if (!data.size) {
+            errors.push('El tamaño de la empresa es obligatorio');
+          }
+          
+          if (!data.type) {
+            errors.push('El tipo de empresa es obligatorio');
+          }
+          
+          if (data.briefDescription && data.briefDescription.length > 250) {
+            errors.push('La descripción breve no puede exceder los 250 caracteres');
+          }
+          
+          return errors;
+        }
+
+        function isValidEmail(email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+
+        function showLoading(show = true) {
+          const submitBtn = document.querySelector('button[type="submit"]');
+          if (show) {
+            submitBtn.innerHTML = '<div class="loading-spinner"></div> Creando empresa...';
+            submitBtn.disabled = true;
+          } else {
+            submitBtn.textContent = 'Crear página';
+            submitBtn.disabled = false;
+          }
+        }
+
+        function showSuccessMessage(companyId) {
+          alert(`¡Empresa creada exitosamente!\nID: ${companyId}\nLa página será revisada y publicada pronto.`);
+        }
+      });
+    </script>
+</body>
+</html>
