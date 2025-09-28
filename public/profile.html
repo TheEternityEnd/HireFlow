@@ -5,20 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HireFlow</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-left">
-            <a href="main.html" class="logo"><img src="../images/logo.png"></a>
-            <div class="search-box">
-                <img src="../images/search.png">
-                <input type="text" placeholder="Search">
-            </div>
+            <a href="profile.html" class="logo"><img src="../images/logo.png"></a>
         </div>
         <div class="navbar-center">
             <ul>
                 <li><a href="#" class="active-link"><img src="../images/home.png"> <span>Home</span></a></li>
-                <li><a href="#"><img src="../images/network.png"> <span>My Network</span></a></li>
                 <li><a href="#"><img src="../images/jobs.png"> <span>Jobs</span></a></li>
                 <li><a href="#"><img src="../images/message.png"> <span>Messanging</span></a></li>
                 <li><a href="#"><img src="../images/notification.png"> <span>Notifications</span></a></li>
@@ -36,7 +32,6 @@
                     <img src="../images/user-1.png">
                     <div>
                         <h3>Ryan Walton</h3>
-                        <a href="profile.html">View My Profile</a>
                     </div>
                 </div>
                 <hr>
@@ -60,12 +55,7 @@
                     <p>Display & Accesibility</p>
                     <span>></span>
                 </a>
-                <a href="createPage.html" class="profile-menu-link">
-                    <img src="../images/page.png">
-                    <p>Create Business Page</p>
-                    <span>></span>
-                </a>
-                <a href="../index.html" class="profile-menu-link">
+                <a href="#" class="profile-menu-link" id="logoutButton">
                     <img src="../images/logout.png">
                     <p>Logout</p>
                     <span>></span>
@@ -77,19 +67,17 @@
     <div class="container">
         <div class="profile-main">
             <div class="profile-container">
-                <img src="../images/cover-pic.png" width="100%">
+                <img src="../images/cover-pic.png" alt="" width="100%">
                 <div class="profile-container-inner">
                     <img src="../images/user-1.png" class="profile-pic">
                     <h1>Ryan Walton</h1>
                     <b>Web Developer at Microsoft | Former developer at DataStack and Intern at Oracle</b>
                     <p>San Francisco, California, US &middot; <a href="#">Contact info</a></p>
-                    <div class="mutual-connection">
-                        <img src="../images/user-2.png">
-                        <span>1 mutual connection: Jimmy Gibbs</span>
-                    </div>
                     <div class="profile-btn">
                         <a href="#" class="primery-btn"><img src="../images/connect.png">Connect</a>
                         <a href="#"><img src="../images/chat.png">Message</a>
+                        <a href="#"><img src="../images/paper.png">Download CV</a>
+                        <a href="#" onclick="openEditProfileModal()"><img src="../images/pencil.png">Edit Profile</a>
                     </div>
                 </div>
             </div>
@@ -182,43 +170,157 @@
                 <a href="#" class="language-btn">French</a>
             </div>
         </div>
-        <!-- Profile Sidebar -->
-        <div class="profile-sidebar">
-            <div class="sidebar-ad">
-                <small>Ad &middot; &middot; &middot;</small>
-                <p>Master the 5 principles of web desing</p>
-                <div>
-                    <img src="../images/user-1.png">
-                    <img src="../images/mi-logo.png">
-                </div>
-                <b>Brand and Demand in Xiaomi</b>
-                <a href="#" class="ad-link">Learn More</a>
+    </div>
+    
+    <!-- Modal de edición de perfil -->
+    <div class="edit-profile-modal" id="editProfileModal">
+        <div class="edit-profile-content">
+            <div class="edit-profile-header">
+                <h2>Edit Profile</h2>
+                <button class="close-modal" onclick="closeEditProfileModal()">&times;</button>
             </div>
-            <div class="sidebar-people">
-                <h3>People you may know</h3>
-                <div class="sidebar-people-row">
-                    <img src="../images/user-3.png">
-                    <h2>Nicole Senicourt</h2>
-                    <p>Head of marketing at Alibaba</p>
-                    <a href="#">Connect</a>
+            <div class="edit-profile-form">
+                <div class="form-section">
+                    <h3>Basic Information</h3>
+                    <div class="form-group">
+                        <label for="profileName">Full Name</label>
+                        <input type="text" id="profileName" value="Ryan Walton">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileTitle">Professional Title</label>
+                        <input type="text" id="profileTitle" value="Web Developer at Microsoft | Former developer at DataStack and Intern at Oracle">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileLocation">Location</label>
+                        <input type="text" id="profileLocation" value="San Francisco, California, US">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileAbout">About</label>
+                        <textarea id="profileAbout">The success of every websites depends on search engine optimisation and digital marketing strategy. If you are on first page of all major search engines then you are ahead among your competitors on first page of all major search engines then you are ahead among your competitors.</textarea>
+                    </div>
                 </div>
-                <div class="sidebar-people-row">
-                    <img src="../images/user-2.png">
-                    <h2>Benjamin Leo</h2>
-                    <p>Head of marketing at Alibaba</p>
-                    <a href="#">Connect</a>
+                
+                <div class="form-section">
+                    <h3>Experience</h3>
+                    <div id="experienceContainer">
+                        <div class="experience-item">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expCompany1">Company</label>
+                                    <input type="text" id="expCompany1" value="Microsoft">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expPosition1">Position</label>
+                                    <input type="text" id="expPosition1" value="Lead Front-End Developer">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expType1">Employment Type</label>
+                                    <select id="expType1">
+                                        <option value="Full-time" selected>Full-time</option>
+                                        <option value="Part-time">Part-time</option>
+                                        <option value="Contract">Contract</option>
+                                        <option value="Internship">Internship</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="expStartDate1">Start Date</label>
+                                    <input type="text" id="expStartDate1" value="Feb 2021">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expEndDate1">End Date</label>
+                                    <input type="text" id="expEndDate1" value="Present">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="expDescription1">Description</label>
+                                <textarea id="expDescription1">Computer programming is the process of performing a particular computation, usually by designing and building an executable computer program.</textarea>
+                            </div>
+                            <button class="remove-item" onclick="removeExperience(this)">Remove Experience</button>
+                        </div>
+                    </div>
+                    <button class="add-item-btn" onclick="addExperience()">+ Add Experience</button>
                 </div>
-                <div class="sidebar-people-row">
-                    <img src="../images/user-5.png">
-                    <h2>Steve Greg</h2>
-                    <p>Head of marketing at Alibaba</p>
-                    <a href="#">Connect</a>
+                
+                <div class="form-section">
+                    <h3>Education</h3>
+                    <div id="educationContainer">
+                        <div class="education-item">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="eduSchool1">School</label>
+                                    <input type="text" id="eduSchool1" value="Stanford University">
+                                </div>
+                                <div class="form-group">
+                                    <label for="eduDegree1">Degree</label>
+                                    <input type="text" id="eduDegree1" value="BSEE, Electrical Engineering">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="eduStartDate1">Start Date</label>
+                                    <input type="text" id="eduStartDate1" value="2018">
+                                </div>
+                                <div class="form-group">
+                                    <label for="eduEndDate1">End Date</label>
+                                    <input type="text" id="eduEndDate1" value="2022">
+                                </div>
+                            </div>
+                            <button class="remove-item" onclick="removeEducation(this)">Remove Education</button>
+                        </div>
+                    </div>
+                    <button class="add-item-btn" onclick="addEducation()">+ Add Education</button>
                 </div>
-                <div class="sidebar-people-row">
-                    <img src="../images/user-4.png">
-                    <h2>Elena Delgado</h2>
-                    <p>Head of marketing at Alibaba</p>
-                    <a href="#">Connect</a>
+                
+                <div class="form-section">
+                    <h3>Skills</h3>
+                    <div class="form-group">
+                        <label>Current Skills</label>
+                        <div class="skills-container" id="skillsContainer">
+                            <div class="skill-tag">Leadership <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">Web Design <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">Development <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">Communication <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">UI/UX <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">Planning <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">Coding <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">JavaScript <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">Python <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                            <div class="skill-tag">Enterpreneurship <span class="remove-tag" onclick="removeSkill(this)">×</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newSkill">Add New Skill</label>
+                        <div class="form-row">
+                            <input type="text" id="newSkill" placeholder="Enter a skill">
+                            <button class="btn btn-secondary" onclick="addSkill()">Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Languages</h3>
+                    <div class="form-group">
+                        <label>Current Languages</label>
+                        <div class="languages-container" id="languagesContainer">
+                            <div class="language-tag">English <span class="remove-tag" onclick="removeLanguage(this)">×</span></div>
+                            <div class="language-tag">Spanish <span class="remove-tag" onclick="removeLanguage(this)">×</span></div>
+                            <div class="language-tag">French <span class="remove-tag" onclick="removeLanguage(this)">×</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newLanguage">Add New Language</label>
+                        <div class="form-row">
+                            <input type="text" id="newLanguage" placeholder="Enter a language">
+                            <button class="btn btn-secondary" onclick="addLanguage()">Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-secondary" onclick="closeEditProfileModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="saveProfileChanges()">Save Changes</button>
                 </div>
             </div>
         </div>
@@ -242,5 +344,137 @@
     </div>
 
     <script src="../js/script.js"></script>
+    <script>
+    // Verificación de autenticación y manejo de logout
+    document.addEventListener('DOMContentLoaded', async function() {
+        const authManager = new AuthManager();
+        
+        try {
+            // Verificar si el usuario está autenticado
+            const user = await authManager.requireAuth();
+            
+            if (user) {
+                console.log('Usuario autenticado:', user.email);
+                // Cargar datos del perfil específicos del usuario
+                loadUserProfile(user.uid);
+                setupLogoutHandler(authManager);
+            }
+        } catch (error) {
+            console.error('Error de autenticación:', error);
+        }
+
+        // Configurar el manejador del botón de logout
+        function setupLogoutHandler(authManager) {
+            const logoutButton = document.getElementById('logoutButton');
+            
+            if (logoutButton) {
+                logoutButton.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    
+                    // Mostrar confirmación
+                    const confirmLogout = await showLogoutConfirmation();
+                    
+                    if (confirmLogout) {
+                        await performLogout(authManager);
+                    }
+                });
+            }
+        }
+
+        // Mostrar diálogo de confirmación
+        async function showLogoutConfirmation() {
+            return new Promise((resolve) => {
+                Swal.fire({
+                    title: '¿Cerrar sesión?',
+                    text: '¿Estás seguro de que quieres salir de tu cuenta?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#045be6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, cerrar sesión',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    resolve(result.isConfirmed);
+                });
+            });
+        }
+
+        // Ejecutar el logout
+        async function performLogout(authManager) {
+            try {
+                // Cerrar el menú de perfil primero
+                closeProfileMenu();
+                
+                // Mostrar loading
+                Swal.fire({
+                    title: 'Cerrando sesión...',
+                    text: 'Por favor espera',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                const result = await authManager.signOut();
+                
+                if (result.success) {
+                    Swal.fire({
+                        title: '¡Sesión cerrada!',
+                        text: 'Has cerrado sesión exitosamente',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = '../index.html';
+                    });
+                } else {
+                    throw new Error(result.error);
+                }
+            } catch (error) {
+                console.error('Error durante el logout:', error);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'No se pudo cerrar la sesión: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Entendido'
+                });
+            }
+        }
+
+        // Función para cargar el perfil del usuario (existente)
+        async function loadUserProfile(userId) {
+            try {
+                const userDoc = await firebase.firestore().collection('users').doc(userId).get();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    updateProfileUI(userData);
+                }
+            } catch (error) {
+                console.error('Error cargando perfil:', error);
+            }
+        }
+
+        function updateProfileUI(userData) {
+            // Actualizar nombre si está disponible
+            if (userData.fullName) {
+                const nameElements = document.querySelectorAll('h1, h3');
+                nameElements.forEach(el => {
+                    if (el.textContent.includes('Ryan Walton')) {
+                        el.textContent = el.textContent.replace('Ryan Walton', userData.fullName);
+                    }
+                });
+            }
+            
+            // Actualizar email si está disponible
+            if (userData.email) {
+                const userInfo = document.querySelector('.user-info h3');
+                if (userInfo && userInfo.textContent === 'Ryan Walton') {
+                    const user = authManager.getCurrentUser();
+                    userInfo.textContent = userData.fullName || user.email;
+                }
+            }
+        }
+    });
+    </script>
 </body>
 </html>

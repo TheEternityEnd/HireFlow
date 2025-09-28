@@ -82,34 +82,41 @@
     <script src="js/auth.js"></script>
     <script src="js/company-manager.js"></script>
     <script>
-        // En index.html, reemplaza el script existente
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
         const authManager = new AuthManager();
+        
+        // Verificar si ya está autenticado
+        const authResult = await authManager.checkAuth();
+        if (authResult.success) {
+            // Redirigir automáticamente al perfil si ya está autenticado
+            window.location.href = 'public/profile.html';
+            return;
+        }
 
-        // Manejar inicio de sesión con email
+        // Manejar inicio de sesión con email (código existente...)
         const loginForm = document.querySelector('form');
         if (loginForm) {
             loginForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const remember = document.getElementById('remember').checked;
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const remember = document.getElementById('remember').checked;
 
-            // Configurar persistencia de sesión
-            if (remember) {
-                await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-            } else {
-                await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-            }
+                // Configurar persistencia
+                const persistence = remember ? 
+                    firebase.auth.Auth.Persistence.LOCAL : 
+                    firebase.auth.Auth.Persistence.SESSION;
+                
+                await firebase.auth().setPersistence(persistence);
 
-            const result = await authManager.signInWithEmail(email, password);
-            
-            if (result.success) {
-                window.location.href = 'public/main.html';
-            } else {
-                alert('Error: ' + result.error);
-            }
+                const result = await authManager.signInWithEmail(email, password);
+                
+                if (result.success) {
+                    window.location.href = 'public/profile.html';
+                } else {
+                    alert('Error: ' + result.error);
+                }
             });
         }
 
@@ -117,7 +124,7 @@
         document.querySelector('.btn-google').addEventListener('click', async function() {
             const result = await authManager.signInWithGoogle();
             if (result.success) {
-            window.location.href = 'public/main.html';
+            window.location.href = 'public/index.html';
             } else {
             alert('Error: ' + result.error);
             }
@@ -126,7 +133,7 @@
         document.querySelector('.btn-microsoft').addEventListener('click', async function() {
             const result = await authManager.signInWithMicrosoft();
             if (result.success) {
-            window.location.href = 'public/main.html';
+            window.location.href = 'public/index.html';
             } else {
             alert('Error: ' + result.error);
             }
@@ -135,7 +142,7 @@
         document.querySelector('.btn-apple').addEventListener('click', async function() {
             const result = await authManager.signInWithApple();
             if (result.success) {
-            window.location.href = 'public/main.html';
+            window.location.href = 'public/index.html';
             } else {
             alert('Error: ' + result.error);
             }

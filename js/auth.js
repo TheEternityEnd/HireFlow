@@ -131,4 +131,102 @@ class AuthManager {
       link.style.display = 'inline';
     });
   }
+
+  async checkAuth() {
+    return new Promise((resolve) => {
+        this.auth.onAuthStateChanged((user) => {
+            if (user) {
+                // Usuario autenticado - guardar en localStorage
+                localStorage.setItem('userAuthenticated', 'true');
+                localStorage.setItem('userId', user.uid);
+                localStorage.setItem('userEmail', user.email);
+                resolve({ success: true, user });
+            } else {
+                // Usuario no autenticado - limpiar localStorage
+                localStorage.removeItem('userAuthenticated');
+                localStorage.removeItem('userId');
+                localStorage.removeItem('userEmail');
+                resolve({ success: false, user: null });
+            }
+        });
+    });
+  }
+
+  getCurrentUser() {
+    return this.auth.currentUser;
+  }
+
+  // Verificar autenticación en cualquier página
+  async requireAuth(redirectUrl = '../index.html') {
+    const authResult = await this.checkAuth();
+    
+    if (!authResult.success) {
+        // Redirigir al login si no está autenticado
+        window.location.href = redirectUrl;
+        return false;
+    }
+    
+    return authResult.user;
+  }
+
+  async signInWithEmail(email, password) {
+    try {
+        const userCredential = await this.auth.signInWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        
+        // Guardar en localStorage para persistencia
+        localStorage.setItem('userAuthenticated', 'true');
+        localStorage.setItem('userId', user.uid);
+        localStorage.setItem('userEmail', user.email);
+        
+        return { success: true, user };
+    } catch (error) {
+        console.error('Error en inicio de sesión:', error);
+        return { success: false, error: this.translateError(error) };
+    }
+  }
+
+  // AGREGAR similar en los otros métodos de login (Google, Microsoft, Apple)
+  async signInWithGoogle() {
+    try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const userCredential = await this.auth.signInWithPopup(provider);
+        const user = userCredential.user;
+        
+        localStorage.setItem('userAuthenticated', 'true');
+        localStorage.setItem('userId', user.uid);
+        localStorage.setItem('userEmail', user.email);
+        
+        return { success: true, user };
+    } catch (error) {
+        console.error('Error en inicio de sesión con Google:', error);
+        return { success: false, error: this.translateError(error) };
+    }
+  }
+
+  // auth.js - AGREGAR/ACTUALIZAR el método signOut
+  async signOut() {
+    try {
+        await this.auth.signOut();
+        
+        // Limpiar localStorage completamente
+        localStorage.removeItem('userAuthenticated');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userProfile');
+        
+        // Limpiar cualquier otra data de sesión
+        const sessionKeys = Object.keys(localStorage).filter(key => 
+            key.startsWith('firebase:') || key.startsWith('user')
+        );
+        sessionKeys.forEach(key => localStorage.removeItem(key));
+        
+        console.log('Sesión cerrada exitosamente');
+        return { success: true };
+    } catch (error) {
+        console.error('Error al cerrar sesión:', error);
+        return { success: false, error: error.message };
+    }
+  }
 }
+
