@@ -20,10 +20,10 @@ class RouteGuard {
 
       if (isProtectedRoute && !user) {
         // Redirigir a login si intenta acceder a ruta protegida sin autenticación
-        window.location.href = '/index.html';
+        window.location.href = '../index.html';
       } else if (isPublicRouteWhenAuth && user) {
         // Redirigir a main si está autenticado y trata de acceder a login/registro
-        window.location.href = '/main.html';
+        window.location.href = '../profile.html';
       }
     });
   }

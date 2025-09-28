@@ -53,7 +53,7 @@
             </form>
             
             <div class="join-now">
-                ¿Estás empezando a usar HireFlow? <a href="public/signup.html">Unirse ahora</a>
+                ¿Estás empezando a usar HireFlow? <a href="signup.html">Unirse ahora</a>
             </div>
         </div>
     </main>
@@ -89,7 +89,7 @@
         const authResult = await authManager.checkAuth();
         if (authResult.success) {
             // Redirigir automáticamente al perfil si ya está autenticado
-            window.location.href = 'public/profile.html';
+            window.location.href = 'profile.html';
             return;
         }
 
@@ -113,7 +113,7 @@
                 const result = await authManager.signInWithEmail(email, password);
                 
                 if (result.success) {
-                    window.location.href = 'public/profile.html';
+                    window.location.href = 'profile.html';
                 } else {
                     alert('Error: ' + result.error);
                 }
@@ -124,7 +124,7 @@
         document.querySelector('.btn-google').addEventListener('click', async function() {
             const result = await authManager.signInWithGoogle();
             if (result.success) {
-            window.location.href = 'public/index.html';
+            window.location.href = 'index.html';
             } else {
             alert('Error: ' + result.error);
             }
@@ -133,7 +133,7 @@
         document.querySelector('.btn-microsoft').addEventListener('click', async function() {
             const result = await authManager.signInWithMicrosoft();
             if (result.success) {
-            window.location.href = 'public/index.html';
+            window.location.href = 'index.html';
             } else {
             alert('Error: ' + result.error);
             }
@@ -142,7 +142,7 @@
         document.querySelector('.btn-apple').addEventListener('click', async function() {
             const result = await authManager.signInWithApple();
             if (result.success) {
-            window.location.href = 'public/index.html';
+            window.location.href = 'index.html';
             } else {
             alert('Error: ' + result.error);
             }
