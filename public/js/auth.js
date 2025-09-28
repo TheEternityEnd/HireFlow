@@ -228,5 +228,62 @@ class AuthManager {
         return { success: false, error: error.message };
     }
   }
+
+  // DENTRO de la clase AuthManager en js/auth.js
+
+  async handleLogout() {
+    // 1. Preguntar al usuario si está seguro
+    const confirmResult = await Swal.fire({
+        title: '¿Cerrar sesión?',
+        text: '¿Estás seguro de que quieres salir de tu cuenta?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#045be6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, cerrar sesión',
+        cancelButtonText: 'Cancelar'
+    });
+
+    // 2. Si el usuario cancela, no hacer nada
+    if (!confirmResult.isConfirmed) {
+        return;
+    }
+
+    // 3. Mostrar un mensaje de "Cerrando sesión..."
+    Swal.fire({
+        title: 'Cerrando sesión...',
+        text: 'Por favor espera',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    // 4. Llamar al método signOut y manejar el resultado
+    try {
+        const result = await this.signOut();
+        if (result.success) {
+            Swal.fire({
+                title: '¡Sesión cerrada!',
+                text: 'Has cerrado sesión exitosamente.',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                // 5. Redirigir a la página de inicio (ruta correcta)
+                window.location.href = '/index.html';
+            });
+        } else {
+            throw new Error(result.error);
+        }
+    } catch (error) {
+        console.error('Error durante el logout:', error);
+        Swal.fire({
+            title: 'Error',
+            text: 'No se pudo cerrar la sesión: ' + error.message,
+            icon: 'error'
+        });
+      }
+  }
 }
 

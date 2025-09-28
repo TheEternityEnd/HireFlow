@@ -50,12 +50,7 @@
                     <p>Help & Support</p>
                     <span>></span>
                 </a>
-                <a href="#" class="profile-menu-link">
-                    <img src="images/display.png">
-                    <p>Display & Accesibility</p>
-                    <span>></span>
-                </a>
-                <a href="#" class="profile-menu-link" id="logoutButton">
+                <a href="#" type="button" class="profile-menu-link" onclick="new AuthManager().handleLogout()">
                     <img src="images/logout.png">
                     <p>Logout</p>
                     <span>></span>
@@ -343,138 +338,13 @@
         </div>
     </div>
 
-    <script src="js/script.js"></script>
-    <script>
-    // Verificación de autenticación y manejo de logout
-    document.addEventListener('DOMContentLoaded', async function() {
-        const authManager = new AuthManager();
-        
-        try {
-            // Verificar si el usuario está autenticado
-            const user = await authManager.requireAuth();
-            
-            if (user) {
-                console.log('Usuario autenticado:', user.email);
-                // Cargar datos del perfil específicos del usuario
-                loadUserProfile(user.uid);
-                setupLogoutHandler(authManager);
-            }
-        } catch (error) {
-            console.error('Error de autenticación:', error);
-        }
-
-        // Configurar el manejador del botón de logout
-        function setupLogoutHandler(authManager) {
-            const logoutButton = document.getElementById('logoutButton');
-            
-            if (logoutButton) {
-                logoutButton.addEventListener('click', async function(e) {
-                    e.preventDefault();
-                    
-                    // Mostrar confirmación
-                    const confirmLogout = await showLogoutConfirmation();
-                    
-                    if (confirmLogout) {
-                        await performLogout(authManager);
-                    }
-                });
-            }
-        }
-
-        // Mostrar diálogo de confirmación
-        async function showLogoutConfirmation() {
-            return new Promise((resolve) => {
-                Swal.fire({
-                    title: '¿Cerrar sesión?',
-                    text: '¿Estás seguro de que quieres salir de tu cuenta?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#045be6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Sí, cerrar sesión',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    resolve(result.isConfirmed);
-                });
-            });
-        }
-
-        // Ejecutar el logout
-        async function performLogout(authManager) {
-            try {
-                // Cerrar el menú de perfil primero
-                closeProfileMenu();
-                
-                // Mostrar loading
-                Swal.fire({
-                    title: 'Cerrando sesión...',
-                    text: 'Por favor espera',
-                    allowOutsideClick: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
-                });
-
-                const result = await authManager.signOut();
-                
-                if (result.success) {
-                    Swal.fire({
-                        title: '¡Sesión cerrada!',
-                        text: 'Has cerrado sesión exitosamente',
-                        icon: 'success',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        window.location.href = 'index.html';
-                    });
-                } else {
-                    throw new Error(result.error);
-                }
-            } catch (error) {
-                console.error('Error durante el logout:', error);
-                Swal.fire({
-                    title: 'Error',
-                    text: 'No se pudo cerrar la sesión: ' + error.message,
-                    icon: 'error',
-                    confirmButtonText: 'Entendido'
-                });
-            }
-        }
-
-        // Función para cargar el perfil del usuario (existente)
-        async function loadUserProfile(userId) {
-            try {
-                const userDoc = await firebase.firestore().collection('users').doc(userId).get();
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    updateProfileUI(userData);
-                }
-            } catch (error) {
-                console.error('Error cargando perfil:', error);
-            }
-        }
-
-        function updateProfileUI(userData) {
-            // Actualizar nombre si está disponible
-            if (userData.fullName) {
-                const nameElements = document.querySelectorAll('h1, h3');
-                nameElements.forEach(el => {
-                    if (el.textContent.includes('Ryan Walton')) {
-                        el.textContent = el.textContent.replace('Ryan Walton', userData.fullName);
-                    }
-                });
-            }
-            
-            // Actualizar email si está disponible
-            if (userData.email) {
-                const userInfo = document.querySelector('.user-info h3');
-                if (userInfo && userInfo.textContent === 'Ryan Walton') {
-                    const user = authManager.getCurrentUser();
-                    userInfo.textContent = userData.fullName || user.email;
-                }
-            }
-        }
-    });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="./js/firebase-config.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/script.js"></script>
+    
 </body>
 </html>
